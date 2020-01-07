@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import Konva from 'konva'
 import { Grid, Button, Menu, MenuItem, Divider } from '@material-ui/core'
-import Shape from './Shape'
+import Rectangle from './Rectangle'
+import Point from './Point'
+import Traingle from './Triangle'
+import Ellipse from './Ellipse'
+import Circle from './Circle'
+// import SetProperties from './SetProperties'
 
 export default class ModelBuilder extends Component {
     constructor(props) {
@@ -17,6 +22,7 @@ export default class ModelBuilder extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.createShape = this.createShape.bind(this);
+        this.drawShape = this.drawShape.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +54,34 @@ export default class ModelBuilder extends Component {
         this.stage = stage;
     }
 
+    drawShape(selectedShape) {
+        switch (selectedShape) {
+            case 'rectangle':
+                let points = new Point(25, 25);
+                let rect = new Rectangle(points, 100, 300);
+                rect.drawRectangle();
+                break;
+            case 'circle':
+                let center = new Point(100, 75);
+                let circle = new Circle(center, 50);
+                circle.draw();
+                break;
+            case 'triangle':
+                let p1 = new Point(100, 100);
+                let p2 = new Point(100, 300);
+                let p3 = new Point(300, 300);
+                let triangle = new Traingle(p1.getPoint(), p2.getPoint(), p3.getPoint());
+                triangle.draw();
+                break;
+            case 'ellipse':
+                let elipse = new Ellipse(100, 100, 50, 75);
+                elipse.draw();
+                break;
+            default:
+                break;
+        }
+    }
+
     handleClick(event) {
         this.setState({ ...this.state, anchorEl: event.currentTarget })
     }
@@ -58,8 +92,7 @@ export default class ModelBuilder extends Component {
 
     createShape(event) {
         let shapeSelected = event.target.id;
-        let shape = new Shape(shapeSelected);
-        shape.drawShape();
+        this.drawShape(shapeSelected);
         this.handleClose();
     }
 
@@ -83,11 +116,11 @@ export default class ModelBuilder extends Component {
                     >
                         <MenuItem id="rectangle" onClick={this.createShape}>Rectangle</MenuItem>
                         <MenuItem id="circle" onClick={this.createShape}>Circle</MenuItem>
-                        <MenuItem id="elipse" onClick={this.createShape}>Elipse</MenuItem>
+                        <MenuItem id="ellipse" onClick={this.createShape}>Ellipse</MenuItem>
                         <MenuItem id="triangle" onClick={this.createShape}>Triangle</MenuItem>
                     </Menu>
                     <Divider />
-                    <div id="shape"></div>
+                    {/* <SetProperties /> */}
                 </Grid>
             </Grid>
         )
