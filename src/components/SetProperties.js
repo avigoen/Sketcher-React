@@ -45,6 +45,10 @@ class SetProperties extends Component {
                 let elipse = new Ellipse(point, values.minRadius, values.maxRadius);
                 elipse.draw();
                 break;
+            case 'point':
+                let dot = new Point(values.x, values.y);
+                dot.drawPoint();
+                break;
             default:
                 break;
         }
@@ -109,6 +113,15 @@ class SetProperties extends Component {
                     maxRadius: maxRadius
                 };
                 this.drawShape(values)
+                break;
+            case 'point':
+                xCoordinate = document.getElementById('xCoordinate').value;
+                yCoordinate = document.getElementById('yCoordinate').value;
+                values = {
+                    x: xCoordinate,
+                    y: yCoordinate
+                };
+                this.drawShape(values);
                 break;
             default:
                 break;

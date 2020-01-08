@@ -3,7 +3,11 @@ export default class Point {
         this.x = x;
         this.y = y;
     }
-    getPoint() {
-        return { x: this.x, y: this.y };
+    drawPoint() {
+        let canvas = document.querySelector('canvas');
+        if (canvas.getContext) {
+            let ctx = canvas.getContext('2d');
+            ctx.fillRect(this.x, this.y, 5, 5);
+        }
     }
 }

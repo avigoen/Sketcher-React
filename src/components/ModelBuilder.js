@@ -53,6 +53,7 @@ export default class ModelBuilder extends Component {
                         <MenuItem id="circle" onClick={this.createShape}>Circle</MenuItem>
                         <MenuItem id="ellipse" onClick={this.createShape}>Ellipse</MenuItem>
                         <MenuItem id="triangle" onClick={this.createShape}>Triangle</MenuItem>
+                        <MenuItem id="point" onClick={this.createShape}>Point</MenuItem>
                     </Menu>
                     <Divider />
                     <SetProperties selectedShape={this.state.shapeSelected} />
