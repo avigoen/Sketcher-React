@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ModelBuilder from './ModelBuilder'
+import ModelBuilder from './components/ModelBuilder'
 
 class App extends Component {
   render() {
